@@ -1,4 +1,4 @@
-Ruby_Incubator
+Ruby Incubator
 ==============
 
 The Incubator is a place to put all the different Ruby scripts that are too small to be a gem on their own.
