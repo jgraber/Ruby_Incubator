@@ -15,8 +15,14 @@ Dir.entries(".").sort_by{|c| File.stat(c).ctime}.each do |f|
       puts "Create folder #{folder}" 
       Dir.mkdir(folder)
     end
-    puts "%s => %s" %  [f , folder]
-    cmd = "mv '%s' %s " % [f, folder]
+    
+    fescaped = f.gsub("'"){"\\'"}
+    fescaped = fescaped.gsub(" "){"\\ "}
+    fescaped = fescaped.gsub("("){"\\("}
+    fescaped = fescaped.gsub(")"){"\\)"}
+    
+    cmd = "mv %s %s " % [fescaped, folder]
+    puts cmd
     `#{cmd}`
 
   end
