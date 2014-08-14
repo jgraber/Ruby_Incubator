@@ -1,5 +1,7 @@
 #!/usr/bin/ruby
 # encoding: utf-8
+
+#use: gpsinfo.rb * <= to get information out of all images in current directory
  
 require 'exifr'
  
