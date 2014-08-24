@@ -1,3 +1,4 @@
+# start with this command: rspec fileaway_spec.rb
 
 class Rename
   attr_accessor :source, :newName
