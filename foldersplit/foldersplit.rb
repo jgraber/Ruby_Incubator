@@ -23,6 +23,7 @@ Dir.entries(".").sort_by{|c| File.stat(c).ctime}.each do |f|
     fescaped = fescaped.gsub("-"){"\\-"}
     fescaped = fescaped.gsub("="){"\\="}
     fescaped = fescaped.gsub("&"){"\\&"}
+    fescaped = fescaped.gsub(">"){"\\>"}
     
     cmd = "mv %s %s " % [fescaped, folder]
     puts cmd
