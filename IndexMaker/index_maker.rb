@@ -5,6 +5,7 @@ class IndexMaker
     filecontent = "<HTML><HEAD><TITLE>#{folder}</TITLE></HEAD><BODY>"
     Dir.entries(folder).sort_by{|c| c}.each do |f|
       next if f.start_with?(".")
+      next if f.start_with?("00_Inhalt.html")
 
       if File.directory?("#{folder}/#{f}")
         #puts "====> DIR: #{folder}/#{f}"
