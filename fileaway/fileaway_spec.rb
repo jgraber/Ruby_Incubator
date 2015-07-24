@@ -94,13 +94,13 @@ describe "filename" do
   it "1 is printed as 001" do
     i = 1
     formated = "%03d" % i
-    formated.should eq "001"
+    expect(formated).to eq("001")
   end
 
   it "big numbers are not truncated" do
     i = 1000
     formated = "%03d" % i
-    formated.should eq "1000"
+    expect(formated).to eq("1000")
   end
 end
 
@@ -109,14 +109,14 @@ describe "folder structure" do
     source = "folder"
     f = Fileaway.new 
     entries = f.find_files_in (source)
-    entries.should include Rename.new "folder/a"
+    expect(entries).to include Rename.new "folder/a"
   end
 
   it "file can fold in recursive folder" do
     source = "folder"
     f = Fileaway.new
     entries = f.find_files_in (source)
-    entries.should =~ [Rename.new("folder/a"), Rename.new("folder/lower/b")]
+    expect(entries) =~ [Rename.new("folder/a"), Rename.new("folder/lower/b")]
   end
 end
 
@@ -124,13 +124,13 @@ describe "file names" do
   it " / should be replaced with _" do
     f = Fileaway.new
     name = f.get_new_name("a/b/c/d.txt")
-    name.should == "a_b_c_d.txt"
+    expect(name).to eq("a_b_c_d.txt")
   end
 
   it "should add the prefix with an _" do
     f = Fileaway.new ("pref")
     name = f.get_new_name("a/b/c/d.txt")
-    name.should == "pref_a_b_c_d.txt"
+    expect(name).to eq("pref_a_b_c_d.txt")
   end
 
   it "should replace the filename with a number" do   
@@ -148,7 +148,7 @@ describe "file names" do
     aJpg.newName = "a_002.jpg"
     bJPG = Rename.new ("b/b.jpg")
     bJPG.newName = "b_001.jpg"
-    entries.should =~ [aTxt, aJpg, bJPG]
+    expect(entries).to contain_exactly(aTxt, aJpg, bJPG)
   end
 
   it "shuld remember last number in folder" do
@@ -166,7 +166,7 @@ describe "file names" do
     aJpg.newName = "a_b_001.jpg"
     bJPG = Rename.new ("a/c.jpg")
     bJPG.newName = "a_002.jpg"
-    entries.should =~ [aTxt, aJpg, bJPG]
+    expect(entries).to contain_exactly(aTxt, aJpg, bJPG)
   end
 end
 
@@ -179,7 +179,7 @@ end
 
 describe "do work" do
   it "should work" do
-    f = Fileaway.new "Irland"
-    f.move("2014_Maerz", "Irland2014_Maerz")
+    f = Fileaway.new "Norwegen"
+    #f.move("2015", "Norwegen_2015")
   end
 end
